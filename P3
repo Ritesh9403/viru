@@ -1,0 +1,32 @@
+def kruskal(vertices, edges):
+    parent = {v: v for v in vertices}
+
+    def find(v):
+        if parent[v] != v:
+            parent[v] = find(parent[v])
+        return parent[v]
+
+    def union(v1, v2):
+        parent[find(v1)] = find(v2)
+
+mst = []
+    for u, v, w in sorted(edges, key=lambda x: x[2]):  # Sort edges by weight
+        if find(u) != find(v):
+mst.append((u, v, w))
+union(u, v)
+
+    return mst
+
+# Sample input
+vertices = ['A', 'B', 'C', 'D', 'E']
+edges = [
+    ('A', 'B', 1),
+    ('A', 'C', 5),
+    ('B', 'C', 4),
+    ('B', 'D', 2),
+    ('C', 'D', 6),
+    ('D', 'E', 3)
+]
+
+mst = kruskal(vertices, edges)
+print("Minimum Spanning Tree:", mst)
