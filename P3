@@ -9,11 +9,11 @@ def kruskal(vertices, edges):
     def union(v1, v2):
         parent[find(v1)] = find(v2)
 
-mst = []
+    mst = []
     for u, v, w in sorted(edges, key=lambda x: x[2]):  # Sort edges by weight
         if find(u) != find(v):
-mst.append((u, v, w))
-union(u, v)
+            mst.append((u, v, w))
+            union(u, v)
 
     return mst
 
